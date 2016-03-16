@@ -25,29 +25,35 @@
     self = [super init];
     if (self) {
         
-        
+        NSString *replaceText = @"网页链接";
+        UIColor *highlightNormalColor = [UIColor blueColor];//需要高亮显示的颜色
+        UIColor *highlightColor = [UIColor whiteColor];//点击高亮显示的颜色
+        UIColor *color = [UIColor blackColor];//普通文本颜色
         
         self.simpleText = text;
         self.textCheckingResults = [[NSMutableArray alloc] init];
         self.nickNameResults = [[NSMutableArray alloc] init];
         NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.simpleText];
         
+        
+        
+        
         // 2. 为文本设置属性
         UIFont *font = [UIFont systemFontOfSize:17];
         attributedText.yy_font = font;
-        attributedText.yy_color = [UIColor blackColor];
+        attributedText.yy_color = color;
         attributedText.yy_lineSpacing = 5;
         
         // 嵌入 UIImage
         NSMutableAttributedString *attachment = nil;
         UIImage *image = [UIImage imageNamed:@"ios_super_link"];
         attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-        NSAttributedString *attachmentText = [[NSAttributedString alloc] initWithString:@"网页链接" attributes:@{}];
+        NSAttributedString *attachmentText = [[NSAttributedString alloc] initWithString:replaceText attributes:@{}];
         [attachment appendAttributedString:attachmentText];
         
         YYTextBorder *highlightNormalBorder = [YYTextBorder borderWithFillColor:[UIColor lightGrayColor] cornerRadius:3];
         YYTextHighlight *highlightNormal = [YYTextHighlight new];
-        [highlightNormal setColor:[UIColor blueColor]];
+        [highlightNormal setColor:color];
         [highlightNormal setBackgroundBorder:highlightNormalBorder];
         
         [attributedText yy_setTextHighlight:highlightNormal range:NSMakeRange(0, attributedText.length)];
@@ -55,12 +61,8 @@
         
         YYTextBorder *highlightBorder = [YYTextBorder borderWithFillColor:[UIColor lightGrayColor] cornerRadius:3];
         YYTextHighlight *highlight = [YYTextHighlight new];
-        [highlight setColor:[UIColor whiteColor]];
+        [highlight setColor:highlightColor];
         [highlight setBackgroundBorder:highlightBorder];
-        
-        
-        NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-        attributes[NSForegroundColorAttributeName] = [UIColor redColor];
         
         
         NSMutableArray *linkRanges = [NSMutableArray new];
@@ -78,7 +80,7 @@
                 NSRange range = NSRangeFromString(linkRanges[linkRanges.count - i - 1]);
                 [attributedText replaceCharactersInRange:range withAttributedString:attachment];
                 [attributedText yy_setTextHighlight:highlight range:NSMakeRange(range.location, 5)];
-                [attributedText yy_setColor:[UIColor blueColor] range:NSMakeRange(range.location, 5)];
+                [attributedText yy_setColor:highlightNormalColor range:NSMakeRange(range.location, 5)];
                 [attributedText yy_setFont:font range:NSMakeRange(range.location, 5)];
             }
             
@@ -87,7 +89,7 @@
             for (NSString *rangeString in rangesNickname) {
                 NSRange range = NSRangeFromString(rangeString);
                 [attributedText yy_setTextHighlight:highlight range:range];
-                [attributedText yy_setColor:[UIColor blueColor] range:range];
+                [attributedText yy_setColor:highlightNormalColor range:range];
                 [attributedText yy_setFont:font range:range];
                 [self.nickNameResults addObject:[self.simpleText substringWithRange:NSMakeRange(range.location + 1, range.length - 1)]];
             }
@@ -104,11 +106,11 @@
             //NSLog(@"tap text rangess:...%@  %@ ",NSStringFromRange(range),[text yy_plainTextForRange:range]);
             //点击的是链接还是名字
             NSString *target = [text yy_plainTextForRange:range];
-            if (target.length == 5 && [target hasSuffix:@"网页链接"]) {
+            if (target.length == 5 && [target hasSuffix:replaceText]) {
                 //检测点击的是第几个
                 NSInteger index = 0;
                 if (weakSelf.textCheckingResults.count > 1) {
-                    NSArray *ranges = [[text string] searchRanges:@"网页链接"];
+                    NSArray *ranges = [[text string] searchRanges:replaceText];
                     NSRange resultRange = NSMakeRange(range.location + 1, range.length - 1);
                     index = [ranges indexOfObject:NSStringFromRange(resultRange)];
                 }
