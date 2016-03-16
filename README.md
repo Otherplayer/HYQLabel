@@ -1,4 +1,4 @@
 # HYQLabel
 
 
-![image](https://github.com/Otherplayer/HYQTextLabel/raw/master/Others/screenshot.png)
+![image](https://github.com/Otherplayer/HYQLabel/raw/master/Others/screenshot.png)
