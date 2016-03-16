@@ -139,6 +139,9 @@
         };
         self.highlightLongPressAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
             NSLog(@"long press text rangess:...%@  %@",NSStringFromRange(range),[text yy_plainTextForRange:range]);
+            if (weakSelf.longPressAction) {
+                weakSelf.longPressAction(nil);
+            }
         };
         
     }
