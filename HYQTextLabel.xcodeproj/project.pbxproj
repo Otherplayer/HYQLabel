@@ -15,6 +15,7 @@
 		842E89451C991D4200CC638D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842E89431C991D4200CC638D /* LaunchScreen.storyboard */; };
 		848B1F391C9942F700937641 /* HYQLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B1F381C9942F700937641 /* HYQLabel.m */; };
 		848B1F3C1C9954D200937641 /* NSString+Categiries.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B1F3B1C9954D200937641 /* NSString+Categiries.m */; };
+		84C871451C996486007FDDCA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 84C871441C996486007FDDCA /* README.md */; };
 		DBAE6806A15079CD22AAC671 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4631A2833F2673083D8F307 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		848B1F381C9942F700937641 /* HYQLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYQLabel.m; sourceTree = "<group>"; };
 		848B1F3A1C9954D200937641 /* NSString+Categiries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Categiries.h"; sourceTree = "<group>"; };
 		848B1F3B1C9954D200937641 /* NSString+Categiries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Categiries.m"; sourceTree = "<group>"; };
+		84C871441C996486007FDDCA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B4631A2833F2673083D8F307 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71996F031C7DA10795BB1AE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +64,7 @@
 		842E89291C991D4200CC638D = {
 			isa = PBXGroup;
 			children = (
+				84C871441C996486007FDDCA /* README.md */,
 				842E89341C991D4200CC638D /* HYQTextLabel */,
 				842E89331C991D4200CC638D /* Products */,
 				24B625F8AFAE44FAE845E57C /* Pods */,
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C871451C996486007FDDCA /* README.md in Sources */,
 				842E893D1C991D4200CC638D /* ViewController.m in Sources */,
 				842E893A1C991D4200CC638D /* AppDelegate.m in Sources */,
 				848B1F391C9942F700937641 /* HYQLabel.m in Sources */,
