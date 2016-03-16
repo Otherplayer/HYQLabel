@@ -29,6 +29,7 @@
         UIColor *highlightNormalColor = [UIColor blueColor];//需要高亮显示的颜色
         UIColor *highlightColor = [UIColor whiteColor];//点击高亮显示的颜色
         UIColor *color = [UIColor blackColor];//普通文本颜色
+        UIFont *font = [UIFont systemFontOfSize:17];//文本字体大小
         
         self.simpleText = text;
         self.textCheckingResults = [[NSMutableArray alloc] init];
@@ -36,13 +37,10 @@
         NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.simpleText];
         
         
-        
-        
         // 2. 为文本设置属性
-        UIFont *font = [UIFont systemFontOfSize:17];
         attributedText.yy_font = font;
         attributedText.yy_color = color;
-        attributedText.yy_lineSpacing = 5;
+        //attributedText.yy_lineSpacing = 5;
         
         // 嵌入 UIImage
         NSMutableAttributedString *attachment = nil;
@@ -51,14 +49,14 @@
         NSAttributedString *attachmentText = [[NSAttributedString alloc] initWithString:replaceText attributes:@{}];
         [attachment appendAttributedString:attachmentText];
         
+        // 设置普通文本点击高亮效果
         YYTextBorder *highlightNormalBorder = [YYTextBorder borderWithFillColor:[UIColor lightGrayColor] cornerRadius:3];
         YYTextHighlight *highlightNormal = [YYTextHighlight new];
         [highlightNormal setColor:color];
         [highlightNormal setBackgroundBorder:highlightNormalBorder];
-        
         [attributedText yy_setTextHighlight:highlightNormal range:NSMakeRange(0, attributedText.length)];
         
-        
+        // 设置高亮显示的文本（名字、链接）
         YYTextBorder *highlightBorder = [YYTextBorder borderWithFillColor:[UIColor lightGrayColor] cornerRadius:3];
         YYTextHighlight *highlight = [YYTextHighlight new];
         [highlight setColor:highlightColor];
@@ -95,19 +93,26 @@
             }
         }
         
-        [attributedText replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];//去掉第一个@
+        // 去掉第一个@符号
+        [attributedText replaceCharactersInRange:NSMakeRange(0, 1) withString:@""];
+        
+        // 设置文本
         self.attributedText = attributedText;
         self.numberOfLines = 0;
         self.lineBreakMode = NSLineBreakByCharWrapping;
         
+        
+        
+        // 配置点击事件
         WS(weakSelf);
         
         self.highlightTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
             //NSLog(@"tap text rangess:...%@  %@ ",NSStringFromRange(range),[text yy_plainTextForRange:range]);
+            
             //点击的是链接还是名字
             NSString *target = [text yy_plainTextForRange:range];
-            if (target.length == 5 && [target hasSuffix:replaceText]) {
-                //检测点击的是第几个
+            if (target.length == (replaceText.length + 1) && [target hasSuffix:replaceText]) {
+                //检测点击的是第几个链接
                 NSInteger index = 0;
                 if (weakSelf.textCheckingResults.count > 1) {
                     NSArray *ranges = [[text string] searchRanges:replaceText];
@@ -119,6 +124,7 @@
                     weakSelf.tapAction(result.URL);
                 }
             }else{
+                //点击的文本
                 if ([target hasPrefix:@"@"]) {
                     target = [target stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
                 }
