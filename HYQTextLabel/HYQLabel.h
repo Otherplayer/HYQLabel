@@ -17,6 +17,8 @@ typedef void(^HYQTextAction)(_Nullable id object);
 
 - (nullable instancetype)initWithText:(nullable NSString *)text;
 
+@property (nullable, nonatomic,strong) NSString *simpleText;
+
 @property (nullable, nonatomic, copy) HYQTextAction tapAction;
 @property (nullable, nonatomic, copy) HYQTextAction longPressAction;
 

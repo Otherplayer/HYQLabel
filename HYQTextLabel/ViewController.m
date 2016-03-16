@@ -103,6 +103,9 @@ static NSString *const TextCheckingResultAttributeName = @"TextCheckingResultAtt
     };
     
 }
+- (IBAction)changeAction:(id)sender {
+    [self.label setSimpleText:@"hahahaha @ihshhs "];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
