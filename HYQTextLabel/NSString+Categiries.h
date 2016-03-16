@@ -10,4 +10,8 @@
 
 @interface NSString (Categiries)
 
+
+- (NSArray *)searchRanges:(NSString *)target;
+- (NSArray *)searchNicknameRanges;//@与空格之间
+
 @end

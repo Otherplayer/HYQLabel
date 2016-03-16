@@ -9,9 +9,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <YYLabel.h>
+#import <NSAttributedString+YYText.h>
 
+typedef void(^HYQTextAction)(_Nullable id object);
 @interface HYQLabel : YYLabel
 
-// custom code
+- (nullable instancetype)initWithText:(nullable NSString *)text;
+
+@property (nullable, nonatomic, copy) HYQTextAction tapAction;
+@property (nullable, nonatomic, copy) HYQTextAction longPressAction;
 
 @end

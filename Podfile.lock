@@ -1,0 +1,10 @@
+PODS:
+  - YYText (1.0.2)
+
+DEPENDENCIES:
+  - YYText (~> 1.0.1)
+
+SPEC CHECKSUMS:
+  YYText: 9f1b8ce94f4169e40dd6a42182b42dbbd3e54020
+
+COCOAPODS: 0.39.0
