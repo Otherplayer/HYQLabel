@@ -37,8 +37,6 @@
     UIColor *color = [UIColor blackColor];//普通文本颜色
     UIFont *font = [UIFont systemFontOfSize:17];//文本字体大小
     
-    self.textCheckingResults = [[NSMutableArray alloc] init];
-    self.nickNameResults = [[NSMutableArray alloc] init];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.simpleText];
     
     
@@ -70,6 +68,7 @@
     
     NSMutableArray *linkRanges = [NSMutableArray new];
     [self.textCheckingResults removeAllObjects];
+    [self.nickNameResults removeAllObjects];
     NSDataDetector *dataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:NULL];
     [dataDetector enumerateMatchesInString:self.simpleText options:0 range:NSMakeRange(0, self.simpleText.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         [self.textCheckingResults addObject:result];
@@ -151,5 +150,25 @@
     
 
 }
+
+
+#pragma mark - configure
+
+- (NSMutableArray *)textCheckingResults{
+    if (!_textCheckingResults) {
+        _textCheckingResults = [NSMutableArray new];
+    }
+    return _textCheckingResults;
+}
+
+- (NSMutableArray *)nickNameResults{
+    if (!_nickNameResults) {
+        _nickNameResults = [NSMutableArray new];
+    }
+    return _nickNameResults;
+}
+
+
+
 
 @end
